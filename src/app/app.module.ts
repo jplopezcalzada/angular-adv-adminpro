@@ -18,7 +18,7 @@ import { NopagesfoundComponent } from './nopagesfound/nopagesfound.component';
     BrowserModule,
     AppRoutingModule,
     PagesModule,
-    AuthModule
+    AuthModule,
 
   ],
   bootstrap: [AppComponent]
