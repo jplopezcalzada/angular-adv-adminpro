@@ -13,7 +13,7 @@ const customInitFunctions = () => {
             $(".preloader").fadeOut();
         });
         jQuery(document).on('click', '.mega-dropdown', function(e) {
-            e.stopPropagation()
+            e.stopPropagation();
         });
         // ============================================================== 
         // This is for the top header part and sidebar part
@@ -83,37 +83,20 @@ const customInitFunctions = () => {
         }).trigger('blur');
 
         // ============================================================== 
-        // Auto select left navbar
-        // ============================================================== 
-        $(function() {
-            var url = window.location;
-            var element = $('ul#sidebarnav a').filter(function() {
-                return this.href == url;
-            }).addClass('active').parent().addClass('active');
-            while (true) {
-                if (element.is('li')) {
-                    element = element.parent().addClass('in').parent().addClass('active');
-                } else {
-                    break;
-                }
-            }
-
-        });
-        // ============================================================== 
         //tooltip
         // ============================================================== 
         $(function() {
-                $('[data-toggle="tooltip"]').tooltip()
-            })
-            // ============================================================== 
-            //Popover
-            // ============================================================== 
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+        // ============================================================== 
+        //Popover
+        // ============================================================== 
         $(function() {
-                $('[data-toggle="popover"]').popover()
-            })
-            // ============================================================== 
-            // Sidebarmenu
-            // ============================================================== 
+            $('[data-toggle="popover"]').popover();
+        });
+        // ============================================================== 
+        // Sidebarmenu
+        // ============================================================== 
         $(function() {
             $('#sidebarnav').AdminMenu();
         });
@@ -158,6 +141,5 @@ const customInitFunctions = () => {
         });
 
     });
-}
-
+};
 customInitFunctions();

@@ -8,7 +8,7 @@ import { NopagesfoundComponent } from './nopagesfound/nopagesfound.component';
 
 
 const routes: Routes = [
-  {path: '', redirectTo: 'dasboard', pathMatch: 'full'},
+  {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
   {path: '**', component: NopagesfoundComponent}
 
 ];
