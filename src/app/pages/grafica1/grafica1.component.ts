@@ -9,8 +9,16 @@ import { Component } from '@angular/core';
 })
 export class Grafica1Component {
 
-  public labels1: string[] = ['Pan', 'Refrescos', 'Tacos'];
+  public labels1: string[] = ['Diesel', 'Adblue', '95'];
   public dataset1 = [
     [50, 10, 40],
+  ];
+  public labels2: string[] = ['Comerciales', 'Vacio'];
+  public dataset2 = [
+    [80, 20]
+  ];
+  public labels3: string[] = ['Comerciales', 'Vacio'];
+  public dataset3 = [
+    [80, 20]
   ];
 }

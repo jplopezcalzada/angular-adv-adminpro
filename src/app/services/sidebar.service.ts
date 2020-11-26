@@ -18,6 +18,15 @@ export class SidebarService {
 
       ]
     },
+    {
+      titulo: 'Mantenimientos',
+      icono: 'mdi mdi-folder-lock-open',
+      submenu: [
+        {titulo: 'Usuarios', url: 'usuarios'},
+        {titulo: 'Vehiculos', url: 'hospitales'},
+        {titulo: 'Conductores', url: 'medicos'},
+      ]
+    },
   ];
   constructor() { }
 }
