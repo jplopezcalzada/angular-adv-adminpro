@@ -26,7 +26,7 @@ export class UsuariosComponent implements OnInit , OnDestroy{
   public cargando = true;
   constructor(private usuarioService: UsuarioService,
               private busquedasService: BusquedasService,
-              public modalImagenService: ModalImagenService
+              private modalImagenService: ModalImagenService
     ) { }
   ngOnDestroy(): void {
     this.imgSus.unsubscribe();
@@ -64,7 +64,7 @@ export class UsuariosComponent implements OnInit , OnDestroy{
       return this.usuarios = this.usuariosTemp;
     }
     this.busquedasService.buscar('usuarios', termino)
-    .subscribe(resultados =>
+    .subscribe((resultados: any) =>
       this.usuarios = resultados);
   }
 
@@ -102,8 +102,6 @@ export class UsuariosComponent implements OnInit , OnDestroy{
 
 
   abrirModal(usuario: Usuario){
-    console.log(usuario);
-    console.log('imagen',usuario.img);
     this.modalImagenService.abrirModal(
       'usuarios', usuario.uid, usuario.img
     );
