@@ -4,8 +4,12 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class SidebarService {
+  public menu = [];
 
-  menu: any[] = [
+  cargarMenu(){
+    this.menu = JSON.parse(localStorage.getItem('menu')) || [];
+  }
+ /*  menu: any[] = [
     {
       titulo: 'Dasboard',
       icono: 'mdi mdi-gauge',
@@ -28,5 +32,5 @@ export class SidebarService {
       ]
     },
   ];
-  constructor() { }
+  constructor() { } */
 }

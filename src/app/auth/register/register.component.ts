@@ -40,7 +40,7 @@ export class RegisterComponent {
         this.router.navigateByUrl('/');
     }, (err) => {
       // Si sucede el error
-        Swal.fire('Error', err.error.msg,'error');
+        Swal.fire('Error', err.error.msg, 'error');
     });
   }
   campoNoValido(campo: string): boolean{

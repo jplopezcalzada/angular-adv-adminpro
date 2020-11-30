@@ -12,9 +12,9 @@ import { Usuario } from '../../models/usuario.model';
 export class SidebarComponent {
   public menuItems: any[];
   public usuario: Usuario;
-  constructor(private sidebarService: SidebarService,
+  constructor(public sidebarService: SidebarService,
               private usuarioService: UsuarioService) {
-    this.menuItems = sidebarService.menu;
+    //this.menuItems = sidebarService.menu;
     this.usuario = usuarioService.usuario;
     //console.log(this.menuItems);
   }

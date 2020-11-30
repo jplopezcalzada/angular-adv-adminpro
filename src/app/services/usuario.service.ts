@@ -37,6 +37,9 @@ export class UsuarioService {
   get uid(): string{
     return this.usuario.uid || '';
   }
+  get role(): 'ADMIN_ROLE' | 'USER_ROLE'{
+    return this.usuario.role;
+  }
   get headers(){
     return {
       headers: {
@@ -59,12 +62,17 @@ export class UsuarioService {
   }
   logout(){
     localStorage.removeItem('token');
+    localStorage.removeItem('menu');
     this.auth2.signOut().then(() => {
         this.ngZone.run(() => {
           this.router.navigateByUrl('/login');
         });
       });
 
+  }
+  guardarLocalStorage(token: string, menu: string){
+    localStorage.setItem('token', token);
+    localStorage.setItem('menu', JSON.stringify(menu));
   }
   validarToken(): Observable<boolean>{
 
@@ -73,7 +81,7 @@ export class UsuarioService {
       //console.log(resp);
       const { email, google, img = '', nombre, role, uid } = resp.usuario;
       this.usuario = new Usuario ( nombre, email, '', img, google, role, uid);
-      localStorage.setItem('token', resp.token);
+      this.guardarLocalStorage(resp.token , resp.menu);
       return true;
       }),
       catchError( (error) => of(false))
@@ -82,10 +90,8 @@ export class UsuarioService {
   crearUsuario(formData: RegisterForm){
     return this.http.post(`${base_url}/usuarios`, formData)
     .pipe(tap( (resp: any) => {
-      localStorage.setItem('token', resp.token);
-      console.log(resp);
+      this.guardarLocalStorage(resp.token , resp.menu);
     }
-
     ));
   }
 
@@ -100,20 +106,16 @@ export class UsuarioService {
   login(formData: LoginForm){
     return this.http.post(`${base_url}/login`, formData)
     .pipe(tap( (resp: any) => {
-      localStorage.setItem('token', resp.token);
-     // console.log(resp);
+      this.guardarLocalStorage(resp.token , resp.menu);
     }
-
     ));
   }
 
   loginGoogle(token){
     return this.http.post(`${base_url}/login/google`, {token})
     .pipe(tap( (resp: any) => {
-      localStorage.setItem('token', resp.token);
-      //console.log(resp);
+      this.guardarLocalStorage(resp.token , resp.menu);
     }
-
     ));
   }
 
@@ -134,15 +136,12 @@ export class UsuarioService {
   eliminarUsuario(usuario: Usuario){
 
     const url = `${base_url}/usuarios/${usuario.uid}`;
-
     return this.http.delete(url, this.headers);
   }
 
 
   guardarUsuario(usuario: Usuario){
-    console.log(usuario);
     console.log(`${base_url}/usuarios/${usuario.uid}`);
-    
     return this.http.put(`${base_url}/usuarios/${usuario.uid}`, usuario, this.headers);
 
   }
